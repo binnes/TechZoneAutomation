@@ -1,6 +1,9 @@
 # Bill of Materials
 
-To deploy infrastructure or software using TechZone Automation you need to start by creating a **Bill of Materials** (BOM).
+To deploy infrastructure or software using TechZone Automation you need to start by creating a **Bill of Materials** (BOM)  or using a predefined BOM.
+
+!!!Todo
+    Link the ascent tool and the predefined BOMs
 
 The BOM defines the modules you want to install.  Available modules can be found in the [Module Catalog](https://modules.cloudnativetoolkit.dev){target=:blank}
 
