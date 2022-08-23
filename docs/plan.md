@@ -33,3 +33,8 @@ There is an extensive [catalog of modules](https://modules.cloudnativetoolkit.de
 ### Installing an environment using a BOM
 
 How to take a BOM and *run it* to create an environment (this should work with all allowed OS and container tool combinations)
+
+## Contribution
+
+!!!Todo
+    Complete this part of the plan
