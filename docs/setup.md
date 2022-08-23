@@ -88,7 +88,7 @@ Create or change into the directory containing your BOM then run the following c
     ./launch.sh podman --pull
     ```
 
-9. copy the mounted directory to a container directory (needed as podman has issues with symbolic links on a mounted directory) : ```cp -R * /workspace```
+9. copy the mounted directory to a container directory (needed as podman has issues with symbolic links on a mounted directory) : ```cp -R * /workspaces```
 10. run the terraform apply (optionally a variables.yaml file can be created - if not you will be prompted for required values) :
 
     ```shell
@@ -100,4 +100,4 @@ Create or change into the directory containing your BOM then run the following c
 12. wait for terraform and gitops to complete the install
 
 !!!Note
-    the launch script will attach a podman volume for the workspace filesystem, which persists across multiple container runs, so you may need to clear the workspace directory if you don't need the content from previous runs.
+    the launch script will attach a podman volume for the workspace filesystem, which persists across multiple container runs, so you may need to clear the workspaces directory if you don't need the content from previous runs.
