@@ -1,7 +1,7 @@
 # Setup
 
 !!!Todo
-    This section is under construction
+    This section is under construction - need to split into sections covering install, creating BOM and then deploying BOM instead of single set of steps
 
 ## Setup and first deploy (multipass)
 

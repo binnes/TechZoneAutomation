@@ -42,4 +42,6 @@ nav:
   - Home: index.md
   - Plan: plan.md
   - Setup: setup.md
+  - Bill of Materials: bom.md
+  - Deploy: deploy.md
   - Reference:  reference.md
