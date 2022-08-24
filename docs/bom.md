@@ -7,6 +7,9 @@ To deploy infrastructure or software using TechZone Automation you need to start
 
 The BOM defines the modules you want to install.  Available modules can be found in the [Module Catalog](https://modules.cloudnativetoolkit.dev){target=:blank}
 
+!!!Todo
+    Why are some modules not in the catalog (e.g. [k8s-ocp-cluster](https://github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster) - does this mean they are obsolete or incomplete?
+
 ## Investigations to do
 
 -   dependencies (including default vs specified), aliases and dependency resolution (*iascable build*)
@@ -29,10 +32,29 @@ If you explore the **cluster** category in the [modules catalog](https://modules
 
 Some dependencies can be specified as optional.  This is where a module may be able to complete the installation without the optional dependency being satisfied in the BOM.  An example of this is that modules using GitOps to perform an installation will specify the cluster as optional.  This is because the module doesn't need to interact with the cluster to complete the installation.  The module can simple create content in a GitOps repository to complete the installation on a cluster.
 
+### Outstanding Questions
+
 !!!Todo
-    In the module.yaml what are the **refs** and **interface** properties used for?  How does the **platform** property work - any implications/restrictions or is this a testing statement?
+    -   In the module.yaml what are the **refs** and **interface** properties used for?
+        -   What does it mean when a dependency has multiple refs (e.g. [artifactory](https://github.com/cloud-native-toolkit/terraform-tools-artifactory/blob/main/module.yaml))?
+    -   How does the **platform** property work - any implications/restrictions or is this a testing statement?
 
     How are dependencies resolved? 
     
     -   if a single module satisfies a dependency is it automatically selected?  
     -   can a default module be specified if there are multiple modules that satisfy a dependency and one is not included in a BOM?
+    -   is there a feature to allow an OR with dependencies (I need to have a MySQL or Postgres DB)?
+
+### Verifying all dependencies are resolved
+
+Once a BOM has been completed you can validate that all dependencies have been satisfied or can be resolved by running the **iascable** tool.  This will be covered in more detail in the [deploy](deploy.md) section.
+
+``` shell
+    iascable build -i my_bom.yaml
+```
+
+*where **my_bom.yaml** is the file containing the BOM you want to verify*
+
+The iascable build command will create a folder called output, if it doesn't already exist, then generate a folder within the output folder named using the **name** property in the metadata section of the BOM.  
+
+Within this folder will be a file called **bom.yaml** which will be an expanded version of the original BOM (my_bom.yaml), pulling in all dependencies.  If a dependency cannot be automatically resolved you will get an error detailing which dependencies cannot be resolved.
