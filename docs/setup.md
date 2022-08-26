@@ -1,6 +1,10 @@
 ## Setup and first deploy (multipass)[¶](https://binnes.github.io/TechZoneAutomation/setup/#setup-and-first-deploy-multipass)
 
+<<<<<<< HEAD
 Multipass networking doesn't work (no external connectivity, though name resolution works) with Cisco AnyConnect running! Turning off Cisco AnyConnect and the networking works - you cannot start Cisco AnyConnect while multipass is running or the network will be killed.
+=======
+!!!Todo
+    This section is under construction - need to split into sections covering install, creating BOM and then deploying BOM instead of single set of steps
 
 Create or change into the directory containing your BOM then run the following commands:
 
@@ -9,8 +13,6 @@ Create or change into the directory containing your BOM then run the following c
    ```shell
    brew install --cask multipass
    ```
-
-   
 
 2. download the cloud init file : 
 
@@ -24,23 +26,17 @@ Create or change into the directory containing your BOM then run the following c
    multipass launch --name cli-tools --cloud-init ./cli-tools.yaml
    ```
 
-   
-
 4. mount current directory into VM : `
 
    ```shell
    multipass mount $PWD cli-tools:/automation
    ```
 
-   
-
 5. enter vm : 
 
    ```shell
    multipass shell cli-tools
    ```
-
-   
 
 6. install iascable : 
 
@@ -104,15 +100,11 @@ Create or change into the directory containing your BOM then run the following c
    brew install podman
    ```
 
-   
-
 2. install iascable if not already installed : 
 
    ```shell
    curl -sL https://raw.githubusercontent.com/cloud-native-toolkit/iascable/main/install.sh | sudo sh
    ```
-
-   
 
 3. initialise podman : 
 
@@ -120,23 +112,17 @@ Create or change into the directory containing your BOM then run the following c
    podman machine init
    ```
 
-   
-
 4. enable podman root : 
 
    ```shell
    podman machine set --rootful
    ```
 
-   
-
 5. start podman machine : 
 
    ```shell
    podman machine start
    ```
-
-   
 
 6. create BOM e.g. my-ibm-vpc-gitops.yaml
 
@@ -163,8 +149,6 @@ Create or change into the directory containing your BOM then run the following c
    ```shell
    iascable build -i my-ibm-vpc-gitops.yaml
    ```
-
-   
 
 8. launch the tools container :
 
@@ -237,7 +221,7 @@ Docker desktop should be installed and be running.
    ./launch.sh docker --pull
    ```
 
-4. copy the mounted directory to a container directory (needed as podman has issues with symbolic links on a mounted directory) : 
+4. copy the mounted directory to a container directory :
 
    ```shell
    cp -R * /workspaces
