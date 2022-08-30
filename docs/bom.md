@@ -101,7 +101,7 @@ If the **launch.sh** script is used to launch a tools container (Docker or Podma
         -   [slack message](https://ibm-cloud.slack.com/archives/C039DRPL77U/p1660674488382209) advises export should be added to each line, but this is an invalid format for podman
         -   valid lines for file passed with **--env-file** command line argument should be `TF_VAR_gitops_repo_username=binnes`
         -   this format is accepted by podman, and the environment variables are correctly set in the container
-        -   the value for the variable is not prompted, so seems to indicate that the environment variables are being used but the values that appear in the variables.yaml file are not correct: `value: TF_VAR_gitops_repo_username=binnes`
+        -   the value for the variable is not prompted, so seems to indicate that the environment variables are being used but the values that appear in the generated variables.yaml file are not correct: `value: TF_VAR_gitops_repo_username=binnes`
     -   runtime information (Intel Mac, MacOS 12.5.1, iascable 2.15.1, cli-tools container v1.2 )
 
 !!!Todo
