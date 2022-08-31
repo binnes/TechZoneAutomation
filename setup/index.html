@@ -24,9 +24,9 @@
 ./apply.sh
 </code></pre></div> 10. answer any prompts for missing variable values, check the steps listed and confirm the actions by responding <strong>yes</strong> 11. wait for terraform and gitops to complete the install</p> <p>Issues:</p> <ul> <li>guidance on variable values to be provided is needed</li> <li>certain modules fail (sealed-secrets-controller image fails to pull from docker.io - timeout)</li> </ul> <h2 id=setup-and-first-deploy-podman>Setup and first deploy (podman)<a href=https://binnes.github.io/TechZoneAutomation/setup/#setup-and-first-deploy-podman>¶</a><a class=headerlink href=#setup-and-first-deploy-podman title="Permanent link">&para;</a></h2> <p>Create or change into the directory containing your BOM then run the following commands:</p> <ol> <li>install podman :</li> </ol> <p><div class=highlight><pre><span></span><code>brew install podman
 </code></pre></div> 2. install iascable if not already installed :</p> <p><div class=highlight><pre><span></span><code>curl -sL https://raw.githubusercontent.com/cloud-native-toolkit/iascable/main/install.sh <span class=p>|</span> sudo sh
-</code></pre></div> 3. initialise podman :</p> <p><div class=highlight><pre><span></span><code>podman machine init
-</code></pre></div> 4. enable podman root :</p> <p><div class=highlight><pre><span></span><code>podman machine <span class=nb>set</span> --rootful
-</code></pre></div> 5. start podman machine :</p> <p><div class=highlight><pre><span></span><code>podman machine start
+</code></pre></div> 3. initialise podman :</p> <div class=highlight><pre><span></span><code>podman machine init --rootful
+</code></pre></div> <p>you can also give the podman vm more resource if your machine has sufficient resource:</p> <div class=highlight><pre><span></span><code>podman machine init --cpus <span class=m>4</span> --memory <span class=m>8096</span> --rootful
+</code></pre></div> <ol> <li>start podman machine :</li> </ol> <p><div class=highlight><pre><span></span><code>podman machine start
 </code></pre></div> 6. create BOM e.g. my-ibm-vpc-gitops.yaml</p> <p><div class=highlight><pre><span></span><code><span class=nt>apiVersion</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">cloudnativetoolkit.dev/v1alpha1</span><span class=w></span>
 <span class=nt>kind</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">BillOfMaterial</span><span class=w></span>
 <span class=nt>metadata</span><span class=p>:</span><span class=w></span>
