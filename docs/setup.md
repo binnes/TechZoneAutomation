@@ -95,13 +95,15 @@ Create or change into the directory containing your BOM then run the following c
 3. initialise podman :
 
    ```shell
-   podman machine init
+   podman machine init --rootful
    ```
-4. enable podman root :
 
-   ```shell
-   podman machine set --rootful
+   you can also give the podman vm more resource if your machine has sufficient resource:
+
+   ``` shell
+   podman machine init --cpus 4 --memory 8096 --rootful
    ```
+
 5. start podman machine :
 
    ```shell
