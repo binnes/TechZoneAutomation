@@ -1,30 +1,21 @@
 # Bill of Materials
 
-To deploy infrastructure or software using TechZone Automation you need to start by creating a **Bill of Materials** (BOM)  or using a predefined BOM.
-
-!!!Todo
-    Link the ascent tool and the predefined BOMs
+To deploy infrastructure or software using TechZone Automation you need to start by creating a **Bill of Materials** (BOM) or using a predefined BOM.  The [TechZone Accelerator Toolkit](https://builder.cloudnativetoolkit.dev){target=:blank} site is the starting place to see the modules catalog and list of pre-defined solutions.
 
 The BOM defines the modules you want to install.  Available modules can be found in the [Module Catalog](https://modules.cloudnativetoolkit.dev){target=:blank}
 
 !!!Todo
     Why are some modules not in the catalog (e.g. [k8s-ocp-cluster](https://github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster) - does this mean they are obsolete or incomplete?
 
-## Investigations to do
-
--   dependencies (including default vs specified), aliases and dependency resolution (*iascable build*)
--   variables, input and output
--   how to discover what a module does
-
 ## Dependencies
 
-When you want to install a module there maybe some dependencies that module needs to allow it to be installed.  For example, if you want to use GitOps (ArgoCD) to install an application then GitOps needs to be available and configured on the target cluster.  Similarly if I want to install and configure GitOps then I need to have a cluster to install GitOps into.
+When you want to install a module there maybe some dependencies that module needs to allow it to be installed.  For example, if you want to use GitOps (ArgoCD) to install an application then GitOps needs to be available and configured on the target cluster.  Similarly if you want to install and configure GitOps then I need to have a cluster to install GitOps into.
 
 Every module in TechZone automation defines it's dependencies in a module.yaml file in the module's github repository.  Thr module's repo is linked by clicking on the module name in the [modules catalog](https://modules.cloudnativetoolkit.dev){target=:blank}
 
 ### Alias
 
-Sometimes a module dependency can be satisfied by multiple modules.  In this case an alias can be used, where a module can register that it satisfies an alias.  An example of this is the alias cluster.  Any module that makes a Kubernetes cluster available to other modules will define the **cluster** alias.  This then provides a generic way to specify a cluster dependency.  So long as a module is included in a BOM that satisfies the cluster alias the dependency will be met.
+Sometimes a module dependency can be satisfied by multiple modules.  In this case an alias can be used, where a module can register that it satisfies an alias.  An example of this is the alias **cluster**.  Any module that makes a Kubernetes cluster available to other modules will define the **cluster** alias.  This then provides a generic way to specify a cluster dependency.  So long as a module is included in a BOM that satisfies the cluster alias the dependency will be met.
 
 If you explore the **cluster** category in the [modules catalog](https://modules.cloudnativetoolkit.dev){target=:blank} you will see a number of options for installing a Kubernetes cluster, including an option to simple provide the login to an existing cluster - all these modules will satisfy the **cluster** dependency.
 
@@ -37,13 +28,13 @@ Some dependencies can be specified as optional.  This is where a module may be a
 !!!Todo
     -   In the module.yaml what are the **refs** and **interface** properties used for?
         -   What does it mean when a dependency has multiple refs (e.g. [artifactory](https://github.com/cloud-native-toolkit/terraform-tools-artifactory/blob/main/module.yaml))?
-    -   How does the **platform** property work - any implications/restrictions or is this a testing statement or is there logic in the iascable tool which checks all modules support the deployed platform?
+    -   How does the **platform** property work - any implications/restrictions or is this a testing statement or is there logic in the toolkit tool which checks all modules support the deployed platform?
 
     How are dependencies resolved? 
     
     -   if a single module satisfies a dependency is it automatically selected?  
     -   can a default module be specified if there are multiple modules that satisfy a dependency and one is not included in a BOM?
-    -   is there a feature to allow an OR with dependencies (I need to have a MySQL or Postgres DB)?
+    -   is there a feature to allow an OR with dependencies (e.g. I need to have a MySQL or Postgres DB)?
 
 ### Verifying all dependencies are resolved
 
@@ -58,61 +49,3 @@ Once a BOM has been completed you can validate that all dependencies have been s
 The iascable build command will create a folder called output, if it doesn't already exist, then generate a folder within the output folder named using the **name** property in the metadata section of the BOM.  
 
 Within this folder will be a file called **bom.yaml** which will be an expanded version of the original BOM (my_bom.yaml), pulling in all dependencies.  If a dependency cannot be automatically resolved you will get an error detailing which dependencies cannot be resolved.
-
-## Variables
-
-When a BOM is deployed there are some variables (values) that need to be provided to configure each module, so the desired state can be achieved.
-
-When a module is created, a set of input variables are defined with the option of providing a default value for an input variable.
-
-Some of the input variables may be generated by a dependent module.
-
-The module.yaml file for a module defines the required input variables and if the variable comes from a dependent module.  It is also possible for a module to define optional input variables.
-
-As the modules are Terraform modules, there are also the Terraform variable definitions (usually in variables.tf and output.tf).  The Terraform files have the variable definitions along with any default values.
-
-!!!Todo
-    What is the relationship between the input/output variables defined in the module.yaml file and the Terraform input/output variables defined in the Terraform (.tf) files?
-
-    -   is there any validation between the .yaml BOM and .tf files?
-    -   what is the purpose of the variable information in the modules.yaml file?
-        -   is it used to generate the Terraform files in the output folder?
-    -   should the Terraform files be regarded as the source of truth?
-
-You will need to provide some input variables for most modules.  These allow you to customise the deployment without needing to alter the module code.  It is possible to add variable values to the BOM yaml file, but Terraform provides a number of ways to provide values to input variables:
-
--   using the **-var** command line argument to pass values when invoking Terraform on the command line or from a script
--   from a file containing the variable values
--   as environment variables.  The environment variable format Terraform uses is TF_VAR_ prepended to the input variable name
-
-If the **launch.sh** script is used to launch a tools container (Docker or Podman), then there is a specific process in place to pass environment variables using a **credentials.properties** file.
-
-!!!Todo
-    Work out if Multipass uses credentials.properties
-
-!!!Note
-    The **-var** command line argument to the **terraform** command can only be used if you are not using the **apply.sh** script.  See the [deploy](deploy.md) section for details of running a deployment
-
-!!!Error
-    Need to find out how the credentials.property file works as I can't get it working:
-
-    -   created in file in output directory (same directory as launch.sh)
-    -   format seems to be an issue
-        -   [slack message](https://ibm-cloud.slack.com/archives/C039DRPL77U/p1660674488382209) advises export should be added to each line, but this is an invalid format for podman
-        -   valid lines for file passed with **--env-file** command line argument should be `TF_VAR_gitops_repo_username=binnes`
-        -   this format is accepted by podman, and the environment variables are correctly set in the container
-        -   the value for the variable is not prompted, so seems to indicate that the environment variables are being used but the values that appear in the generated variables.yaml file are not correct: `value: TF_VAR_gitops_repo_username=binnes`
-    -   runtime information (Intel Mac, MacOS 12.5.1, iascable 2.15.1, cli-tools container v1.2 )
-
-!!!Todo
-    what is the preferred/opinionated way to pass variables into the deploy process?
-
-    -   in the BOM
-    -   a variables file
-    -   environment variables
-    -   how are sensitive credentials supposed to be managed?
-
-!!!Todo
-    workout what the apply.sh script does with the variables.yaml and terraform/terraform.tfvars files.  They are backed up by the script
-
-If variables are not passed into the deploy and no default value has been defined, then you will be prompted to provide the values at deploy time
