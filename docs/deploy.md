@@ -40,8 +40,8 @@ If the **launch.sh** script is used to launch a tools container (Docker or Podma
 
 The **credentials.properties** file contains lines of the format:
 
-```shell
-export TF_VAR_variable_name=variable_value
+``` shell
+export TF_VAR_variable_name="variable_value"
 ```
 
 This format ensure the environment variables will be correctly set when using multipass or using containers.
