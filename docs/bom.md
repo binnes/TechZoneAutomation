@@ -1,6 +1,6 @@
 # Bill of Materials
 
-To deploy infrastructure or software using TechZone Automation you need to start by creating a **Bill of Materials** (BOM) or using a predefined BOM.  The [TechZone Accelerator Toolkit](https://builder.cloudnativetoolkit.dev){target=:blank} site is the starting place to see the modules catalog and list of pre-defined solutions.
+To deploy infrastructure or software using TechZone Accelerator you need to start by creating a **Bill of Materials** (BOM) or using a predefined BOM.  The [TechZone Accelerator Toolkit](https://builder.cloudnativetoolkit.dev){target=:blank} site is the starting place to see the modules catalog and list of pre-defined solutions.
 
 The BOM defines the modules you want to install.  Available modules can be found in the [Module Catalog](https://modules.cloudnativetoolkit.dev){target=:blank}
 
@@ -11,7 +11,7 @@ The BOM defines the modules you want to install.  Available modules can be found
 
 When you want to install a module there maybe some dependencies that module needs to allow it to be installed.  For example, if you want to use GitOps (ArgoCD) to install an application then GitOps needs to be available and configured on the target cluster.  Similarly if you want to install and configure GitOps then I need to have a cluster to install GitOps into.
 
-Every module in TechZone automation defines it's dependencies in a module.yaml file in the module's github repository.  Thr module's repo is linked by clicking on the module name in the [modules catalog](https://modules.cloudnativetoolkit.dev){target=:blank}
+Every module in then TechZone Accelerator Toolkit defines it's dependencies in a module.yaml file in the module's github repository.  Thr module's repo is linked by clicking on the module name in the [modules catalog](https://modules.cloudnativetoolkit.dev){target=:blank}
 
 ### Alias
 

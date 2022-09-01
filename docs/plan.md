@@ -4,16 +4,16 @@ The following investigation needs to be done and written up in preparation for c
 
 The work will be split into 2 sections:
 
-1. Consumption - how to use TechZone Automation to create an OpenShift Cluster on different clouds then install and configure a defined set of software
-2. Contribute - how to contribute modules to TechZone Automation to extend the catalog of modules available to install.  This may include open source software, other commercial software offerings
+1. Consumption - how to use TechZone Accelerator Toolkit to create an OpenShift Cluster on different clouds then install and configure a defined set of software
+2. Contribute - how to contribute modules to TechZone Accelerator Toolkit to extend the catalog of modules available to install.  This may include open source software, other commercial software offerings
 
 ## Consumption
 
-Before someone can contribute a module they need to understand how TechZone Automation works and how to use it to lay down a cluster and set of software. The investigations in this section should:
+Before someone can contribute a module they need to understand how TechZone Accelerator Toolkit works and how to use it to lay down a cluster and set of software. The investigations in this section should:
 
 ### Setup
 
--   cover system setup to be able to use TechZone Automation on:
+-   cover system setup to be able to use TechZone Accelerator Toolkit on:
     -   MacOS (Intel)
     -   MacOS (Apple Silicon)
     -   Windows (10 and 11)
