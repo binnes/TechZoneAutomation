@@ -4,6 +4,8 @@ To deploy infrastructure or software using TechZone Accelerator you need to star
 
 The BOM defines the modules you want to install.  Available modules can be found in the [Module Catalog](https://modules.cloudnativetoolkit.dev){target=:blank}
 
+See the [operate documentation](https://operate.cloudnativetoolkit.dev/apply/bill-of-material-reference/){target=:blamk} for additional details of the BOM content
+
 !!!Todo
     Why are some modules not in the catalog (e.g. [k8s-ocp-cluster](https://github.com/cloud-native-toolkit/terraform-k8s-ocp-cluster) - does this mean they are obsolete or incomplete?
 
@@ -11,7 +13,7 @@ The BOM defines the modules you want to install.  Available modules can be found
 
 When you want to install a module there maybe some dependencies that module needs to allow it to be installed.  For example, if you want to use GitOps (ArgoCD) to install an application then GitOps needs to be available and configured on the target cluster.  Similarly if you want to install and configure GitOps then I need to have a cluster to install GitOps into.
 
-Every module in then TechZone Accelerator Toolkit defines it's dependencies in a module.yaml file in the module's github repository.  Thr module's repo is linked by clicking on the module name in the [modules catalog](https://modules.cloudnativetoolkit.dev){target=:blank}
+Every module in then TechZone Accelerator Toolkit defines it's dependencies in a module.yaml file in the module's github repository.  The module's repo is linked by clicking on the module name in the [modules catalog](https://modules.cloudnativetoolkit.dev){target=:blank}
 
 ### Alias
 
