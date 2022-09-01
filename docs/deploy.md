@@ -52,7 +52,13 @@ This format ensure the environment variables will be correctly set when using mu
 !!!Todo
     need a new version of iascable to be released to incorporate this [pull request](https://github.com/cloud-native-toolkit/iascable/pull/190).  Until then the apply.sh script will need to be manually modified after **iascable build** is run
 
+    line 37 of apply.sh script should be `environment_variable=$(env | grep "${variable_name}" | sed -E 's/.*=(.*).*/\1/g')`
+
 If variables are not passed into the deploy and no default value has been defined, then you will be prompted to provide the values at deploy time
+
+## Deploying the Bill of Materials
+
+
 
 !!!todo
     How to manage Terraform state in a shared, team environment?
