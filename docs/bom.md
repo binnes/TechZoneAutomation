@@ -51,3 +51,8 @@ Once a BOM has been completed you can validate that all dependencies have been s
 The iascable build command will create a folder called output, if it doesn't already exist, then generate a folder within the output folder named using the **name** property in the metadata section of the BOM.  
 
 Within this folder will be a file called **bom.yaml** which will be an expanded version of the original BOM (my_bom.yaml), pulling in all dependencies.  If a dependency cannot be automatically resolved you will get an error detailing which dependencies cannot be resolved.
+
+## Variables
+
+!!! Todo
+    Important flag in modules and BOM will cause TFVARS template to be generated
