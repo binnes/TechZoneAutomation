@@ -44,4 +44,5 @@ nav:
   - Setup: setup.md
   - Bill of Materials: bom.md
   - Deploy: deploy.md
+  - Helm: helm.md
   - Reference:  reference.md
