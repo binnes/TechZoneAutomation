@@ -19,3 +19,5 @@ There are a number of different opinions and strategies around CI/CD helm develo
 It is possible to add a schema to validate input variables before a Helm install is run.  This ensures that all required values are provided and in the correct format.
 
 The values validation uses a [JSON Schema](https://json-schema.org)
+
+There is also the **helm lint** command to verify the helm chart is OK and the **--dry-run** flag to generate the deployment artifacts, which could be used to test the correct generation with different input values.
