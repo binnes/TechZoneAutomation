@@ -98,5 +98,5 @@ The follow the steps below:
 3. create the kubernetes environment:
 
     ``` shell
-    minikube start --driver=docker --addons=dashboard,olm,dns
+    minikube start --driver=docker --addons=dashboard,olm,dns,ingress
     ```
