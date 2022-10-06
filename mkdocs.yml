@@ -46,3 +46,4 @@ nav:
   - Deploy: deploy.md
   - Helm: helm.md
   - Reference:  reference.md
+  - Learning Env: learningEnvironment.md
