@@ -47,3 +47,4 @@ nav:
   - Helm: helm.md
   - Reference:  reference.md
   - Learning Env: learningEnvironment.md
+  - Create/Update Module: module.md
