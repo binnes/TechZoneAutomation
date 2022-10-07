@@ -26,6 +26,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://binnes.github.io/TechZoneAutomation/module/</loc>
+         <lastmod>2022-10-07</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://binnes.github.io/TechZoneAutomation/plan/</loc>
          <lastmod>2022-10-07</lastmod>
          <changefreq>daily</changefreq>
