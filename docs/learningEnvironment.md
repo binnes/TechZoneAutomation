@@ -77,6 +77,7 @@ runcmd:
   - curl -Lo /run/tmp/kubectl "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/$(if [ `uname -m` = arm64 -o `uname -m` = aarch64 ]; then echo "arm64"; else echo "amd64"; fi)/kubectl" && chmod +x /run/tmp/kubectl && sudo mv /run/tmp/kubectl /usr/local/bin
   - export OPENSHIFT_CLI_VERSION=4.10 && sudo curl -Lo /usr/local/oc-client.tar.gz https://mirror.openshift.com/pub/openshift-v4/$(if [ `uname -m` = arm64 -o `uname -m` = aarch64 ]; then echo "arm64"; else echo "amd64"; fi)/clients/ocp/stable-${OPENSHIFT_CLI_VERSION}/openshift-client-linux.tar.gz && sudo mkdir /usr/local/oc-client && cd /usr/local/oc-client && tar xzf /usr/local/oc-client.tar.gz && sudo mv ./oc /usr/local/bin && cd - && sudo rm -rf /usr/local/oc-client && sudo rm /usr/local/oc-client.tar.gz
   - curl -fsSL https://clis.cloud.ibm.com/install/linux | sh && ibmcloud plugin install container-service -f && ibmcloud plugin install container-registry -f && ibmcloud plugin install observe-service -f && ibmcloud plugin install vpc-infrastructure -f && ibmcloud config --check-version=false
+  - curl -sL https://iascable.cloudnativetoolkit.dev/install.sh | sh
   - curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-$(if [ `uname -m` = arm64 -o `uname -m` = aarch64 ]; then echo "arm64"; else echo "amd64"; fi)
   - install minikube-linux-$(if [ `uname -m` = arm64 -o `uname -m` = aarch64 ]; then echo "arm64"; else echo "amd64"; fi) /usr/local/bin/minikube
 ```
