@@ -160,6 +160,7 @@ d3a7f23e854b  gcr.io/k8s-minikube/kicbase:v0.0.34                            10 
 </code></pre></div> <div class="admonition info"> <p class=admonition-title>Temporary workaround</p> <p>The cluster login module is not yet published, so need to add it manually into the correct place for it to be found when the Bill of Materials is applied</p> <div class=highlight><pre><span></span><code>sudo mkdir /automation
 <span class=nb>cd</span> /automation
 sudo tar zxvf /terraform/terraform-cluster-login.tgz
+<span class=nb>cd</span> /terraform
 </code></pre></div> </div> </li> <li> <p>apply the bill of materials</p> <div class=highlight><pre><span></span><code><span class=nb>cd</span> tutorial
 ./apply.sh
 </code></pre></div> </li> <li> <p>set the kube config file to be able to access minikube within the cli-tools container</p> <div class=highlight><pre><span></span><code><span class=nb>export</span> <span class=nv>KUBECONFIG</span><span class=o>=</span>/terraform/tutorial/terraform/.tmp/.kube/config
